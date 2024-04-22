@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+   <span style="position: fixed;top: 1;"> 
+    <a href="#first">first</a>
+    <a href="#second">second</a>
+    <a href="#third">Third</a>
+    <a href="#fourth">Fourth</a>
+    </span>
+
+
+    <style>
+        html,body{
+            scroll-behavior: smooth !important;
+        }
+    </style>
+
+
+    <div id="first" style="width: 100%;height: 100vh;background: red;">
+
+    </div>
+    <div id="second" style="width: 100%;height: 100vh;background: rgb(138, 100, 100);">
+
+    </div>
+    <div id="third" style="width: 100%;height: 100vh;background: rgb(0, 255, 213);">
+
+    </div>
+    <div id="fourth" style="width: 100%;height: 100vh;background: rgb(195, 0, 255);">
+
+    </div>
+    
+</body>
+</html>
+
+
+<div id="first">
+
+                
+    <style>
+    
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            height: 500px;
+            margin-top: 300px;
+            margin-bottom: 250px;
+          
+            text-align:center;
+            padding: 30px;
+            font-size: medium;
+          }
+          
+          .title {
+            color: rgb(28, 26, 26);
+            font-size: 5px;
+          }
+          
+          button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+          }
+          
+          a {
+            text-decoration: none;
+            align-content: center;
+            font-size: 22px;
+            color: black;
+            
+          }
+          
+          button:hover, a:hover {
+            opacity: 0.7;
+          }
+        </style>
+           
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {%for i in view%}
+        <div class="card">
+          <img src="{%static '/team2.jpg'%}" alt="John" style="width:100%">
+          
+          <h1>Name: {{i.name}}</h1>
+          
+          <h1 style="font-size: 30px;">{{i.details}}</h1>
+          <h1 style="font-size: 30px;">Since:{{i.since}}</h1>
+          <h1 style="font-size:30px;">Licence No:{{i.licence}}</h1>
+          
+        
+          {%endfor%}
+          
+        </div> 
+    
+        <div id="second">
+
+
+
+    
+            
+    <div class="container">
+        <div class="row" >
+          <h1 align="center"><u>MY WORKS</u></h1>
+          {% for instance in view1 %}
+            <div class="col-md-4 col-lg-4 col-sm-6" >
+              <div class="thumbnail m-3" style="max-width: 300px;max-height: 300px;">
+                {% if instance.type == 'video/mp4' or instance.type == 'video/ogg' %}
+          <video controls style="max-width: 300px;max-height: 300px;">
+              <source src="/static/media/{{ instance.files.url }}" type="{{ instance.type }}" >
+          </video>
+      {% else %}
+          <img style="max-width: 300px;max-height: 300px;" src="/static/media/{{ instance.files.url }}" alt="{{ instance.works }}">
+      {% endif %}
+      
+                <div class="caption" >
+                  <h3>{{ instance.works }}</h3>
+      
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+    
+        </div>
+    
+        <div id="third">
+            
+    <style>
+        .button {
+          background-color: #f4f4f9; /* Green */
+          border: none;
+          color: rgb(49, 43, 43);
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        .button3 {border-radius: 8px;}
+        .button5 {border-radius: 50%;}
+    </style>    
+    
+    
+    
+    
+    
+        
+        
+        </div>
+    
+        <div id="fourth">
+           
+        </div>
+    
+        <div id="fifth">
+           
+        </div>

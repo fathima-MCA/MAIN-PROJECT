@@ -1,0 +1,119 @@
+{% load static %}
+{% include 'userheader.html' %}
+
+
+         
+
+{%if acc_pay %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+<form action="" method="post">
+    <table>
+        <h3></h3>
+       
+        
+    <form method="POST" method="post" style="width: 600px;">
+           <h2 style="color: rgb(0, 0, 0);margin-top: 1em;">MAKE FULL PAYMENT<span class="text_color"></span> </h2>
+            <table class="table" style="width:500px;box-shadow: 0px 2px 20px lightgray;">
+                        <tr>
+                            <th style="color:black">CardNo</th>
+                            <td style="color: black"><input type="text" name="cd" required class="form-control"   pattern="[0-9 ]{16}" title="Enter 16 digit " autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">CVV</th>
+                            <td style="color: black"><input type="text" name="cv"  autocomplete="off" required class="form-control" pattern="[0-9 ]{3}" title="Enter 3 digit cvv"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">ExpiryDate</th>
+                            <td><input type="date" id="date" name="ed" min="" max="" required  class="form-control"></td>
+
+                            <!-- <td style="color: black"><input type="" name="ed" maxlength="2023-09-01"  autocomplete="off" required class="form-control"></td> -->
+                        </tr>
+                        <tr>
+                            <th style="color:black">Cardholder</th>
+                            <td style="color: black"><input type="text" name="cr" required class="form-control" autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">Amount</th>
+                            <td style="color: black"><input type="text" name="amount" readonly value="{{ diff }}" autocomplete="off" required  class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2"><input type="submit" name="payment" value="PAYMENT" class="btn btn-success"></td>
+                        </tr>
+                </table>  
+            </form>
+        </center>
+    {%else%}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <center>
+    <form method="POST" method="post" style="width: 600px;">
+           <h2 style="color: rgb(0, 0, 0);margin-top: 1em;">Make Payment<span class="text_color"></span> </h2>
+            <table class="table" style="width:500px;color: black;box-shadow: 0px 2px 20px lightgray;">
+                        <tr>
+                            <th style="color:black">CardNo</th>
+                            <td style="color: black"><input type="text" name="cd" required class="form-control"   pattern="[0-9 ]{16}" title="Enter 16 digit " autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">CVV</th>
+                            <td style="color: black"><input type="text" name="cv"  autocomplete="off" required class="form-control" pattern="[0-9 ]{3}" title="Enter 3 digit cvv"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">ExpiryDate</th>
+                            <td style="color: black"><input type="date"  min="" max=""  name="ed" id="date"  autocomplete="off" required class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">Cardholder</th>
+                            <td style="color: black"><input type="text" name="cr" required class="form-control" autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <th style="color:black">Amount</th>
+                            <td style="color: black"><input type="text" readonly name="amount"  autocomplete="off" value="{{ amt }}" required  class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2"><input type="submit" name="payment" value="PAYMENT" class="btn btn-success"></td>
+                        </tr>
+                </table>  
+                </form>
+            </center>
+        </body>
+    {%endif%}
+
+
+    <script>
+		// Get the current date in the format "YYYY-MM-DD"
+		function getCurrentDate() {
+		  const today = new Date();
+		  let dd = today.getDate();
+		  let mm = today.getMonth() + 1; // January is 0!
+		  const yyyy = today.getFullYear();
+	
+		  if (dd < 10) {
+			dd = '0' + dd;
+		  }
+	
+		  if (mm < 10) {
+			mm = '0' + mm;
+		  }
+	
+		  return yyyy + '-' + mm + '-' + dd;
+		}
+	
+		// Set the minimum and maximum allowed dates for the date input field
+		const dateInput = document.getElementById('date');
+		dateInput.min = getCurrentDate(); // Minimum date is the current date
+		dateInput.max = '9999-12-31'; // Maximum date (You can adjust this if needed)
+	  </script>
+    {% include 'footer.html' %}
+  
+  

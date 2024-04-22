@@ -1,0 +1,137 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+
+
+
+<center>   
+        
+            {%if upd_cate %}
+            <form class="moveup" action="" method="post" style="color:aliceblue"  enctype="multipart/form-data">
+            <table class="table">
+                <h2>Update Camera</h2>
+                <tr>
+                    <th>Camera</th>
+                    <td><input type="text"  name="camera" value="{{upd_cate.camera}}" class="form-control" required></td>
+                </tr>
+               
+                <tr>
+                    <th>Resolution</th>
+                    <td><input type="text" name="res" value="{{upd_cate.resolution}}" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th>Sensor type and Size</th>
+                    <td><input type="text" name="sensor" value="{{upd_cate.sensortypeandsize}}" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th>Lense Type</th>
+                    <td><input type="text" name="lense" value="{{upd_cate.lensetype}}" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th>Connection type</th>
+                    <td><input type="text" name="connection" value="{{upd_cate.connectiontype}}" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th>Amount Per Day</th>
+                    <td><input type="text" name="apd" class="form-control" value="{{upd_cate.amountperday}}" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="sumbit" value="UPDATE"></td>
+                </tr>
+            </table>
+        </form>
+    
+       
+    
+        {%else%}
+        <form class="moveup"  action="" method="post" style="color:aliceblue" enctype="multipart/form-data">
+        <table class="table">
+            <h2>Add Camera</h2>
+            <tr>
+                <th>Camera</th>
+                <td><input type="text" name="camera" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Camara Images</th>
+                <td><input type="file"  name="imgxxxxxx" required class="form-control" ></td>
+            </tr>
+            <tr>
+                <th>Resolution</th>
+                <td><input type="text" name="res" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Sensor type and Size</th>
+                <td><input type="text" name="sensor" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Lense Type</th>
+                <td><input type="text" name="lense" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Connection type</th>
+                <td><input type="text" name="connection" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Amount Per Day</th>
+                <td><input type="text" name="apd" class="form-control" required></td>
+            </tr>
+            
+            
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-danger" type="submit" name="sumbit" value="ADD"></td>
+            </tr>
+        </table>
+    </form>
+    
+
+
+    
+    <table class="table" style="width:800px;">
+        <h2 align="center"><u>Manage Camera</u></h2>
+        <tr>
+            <th>SL.NO</th>
+            <th>Camera Image</th>
+            <th>Camera</th>
+            <th>Amount per day</th>
+            <th>Resolution</th>
+            <th>Sensor type and Size</th>
+            <th>Lense Type</th>
+            <th>Connection type</th>
+            <th>Amount Per Day</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            
+            <td>{{forloop.counter}}</td>
+            <td><a href="/static/media/{{ val.cam_img }}"><img src="/static/media/{{ val.cam_img }}" alt=""></a></td>
+            <td>{{val.camera}}</td>
+            <td>{{val.amountperday}}</td>
+            <td>{{val.resolution}}</td>
+            <td>{{val.sensortypeandsize}}</td>
+            <td>{{val.lensetype}}</td>
+            <td>{{val.connectiontype}}</td>
+            <td>{{val.amountperday}}</td>
+            
+            <td>
+                <a class="btn btn-warning" href="/studioupdatecamera/{{val.camera_id}}">Update</a>
+                <a class="btn btn-danger" href="/studiodeletecamera/{{val.camera_id}}">DELETE</a>
+            </td>
+            {% if val.status == "Available" %}
+                <td>
+                    <a class="btn btn-warning"href="/studionotavilablecamera/{{val.camera_id}}">Not Available</a>
+                </td>
+                {% else %}
+                <td>
+                    <a class="btn btn-success"href="/studioavilablecamera/{{val.camera_id}}">Available</a>
+                </td>
+            {% endif %}
+        </tr>
+        {%endfor%}
+    </table>
+    {% endif %}
+  
+{%endblock%}
+
+
+
+

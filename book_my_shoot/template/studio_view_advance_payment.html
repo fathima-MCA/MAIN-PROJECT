@@ -1,0 +1,33 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+
+
+    <form style="padding-top: 100px;" action="" method="post">
+        <table class="table" style="color:aliceblue">
+            <tr>
+                <th>Sl.No</th>
+                <th>Advance Amount paid</th>
+                <th>Date</th>
+            </tr>
+            {%for i in view %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.amount}}</td>
+                <td>{{i.date}}</td>
+                <!-- {%if i.bookings.status == 'advance paid' %}
+                
+
+                {%else%} -->
+
+                <td>Advance payment process completed</td>
+                
+                {%endif%}
+
+            </tr>
+            
+            {%endfor%}
+
+        </table>
+    </form>
+{%endblock%}

@@ -1,0 +1,70 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+
+<center>    <form action="" method="post" class="moveup" enctype="multipart/form-data" style="color:aliceblue">
+        <h2><u>Add Work</u></h2>
+    <table class="table">
+      <tr>
+        <th>category</th>
+        <td>
+            <select name="ser" required class="form-control">
+              <option value=""> -- Select category --</option>
+                {%for i in q %}
+                <option value="{{i.category_id}}">{{i.category}}</option>
+                {%endfor%}
+            </select>
+        </td>
+    </tr>
+    <tr>
+    <th>Works</th>
+    <td><input type="text" name="works" required class="form-control"></td>
+    
+    </tr>
+    
+    
+    <tr>
+        <th>Files</th>
+        <!-- <td><input type="file" name="upload"></td> -->
+        <td><input type="file"  name="upload" class="form-control"  accept="image/*,video/*"></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input class="btn btn-success" type="submit" name="submit" value="ADD"></td>
+    </tr>
+    </table>
+</form>
+
+
+
+<div class="container">
+  <h1 align="center"><u>WORK DETAILS</u></h1>
+  <div class="row" >
+    
+    <br><br>
+    {% for instance in view1 %}
+      <div class="col-md-4 col-lg-4 col-sm-6" >
+        <div class="thumbnail m-3" style="max-width: 300px;max-height: 300px;">
+          {% if instance.type == 'video/mp4' or instance.type == 'video/ogg' %}
+    <video controls style="width: 300px;height: 200px;">
+        <source src="/static/media/{{ instance.files.url }}" type="{{ instance.type }}" >
+    </video>
+{% else %}
+    <img style="width: 300px;height: 200px;" src="/static/media/{{ instance.files.url }}" alt="{{ instance.works }}">
+{% endif %}
+
+          <div class="caption" >
+            <h3>{{ instance.works }}</h3>
+            <a class="btn btn-danger mt-3" href="/studio_remove_works/{{instance.mywork_id}}">REMOVE</a>
+          </div>
+          <div class="caption" align="center">
+            
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{%endblock%}  

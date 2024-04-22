@@ -1,0 +1,44 @@
+{% extends 'mainadmin.html' %}
+
+{% block mainsec %}
+
+
+    
+            <table class="table moveup" style="color:white;margin-left: 50px;">
+                <h2 style="margin-top: 100px;">PHOTOGRAPHER DETAILS</h2>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Studio</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Place</th>
+                    <th>phone</th>
+                    <th>Email</th>
+                </tr>
+                {% for i in view %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{i.studios.studioname}}</td>
+                    <td>{{i.fname}}</td>
+                    <td>{{i.lname}}</td>
+                    <td>{{i.place}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.email}}</td>
+                    {% if i.logins.usertype == "photographer" %}
+                    <td>
+                        <a class="btn btn-warning"href="/updatephototoblock/{{i.logins.login_id}}">Block</a>
+                    </td>
+                    {% else %}
+                    <td>
+                        <a class="btn btn-success"href="/updatephototounblock/{{i.logins.login_id}}">Unblock</a>
+                    </td>
+                    {% endif %}
+                    <td>
+                        <a class="btn btn-warning"href="/admin_view_rated/{{i.photographer_id}}">Rated</a>
+                    </td>
+
+                </tr>
+                {%endfor%}
+            </table>
+      
+        {%endblock%}

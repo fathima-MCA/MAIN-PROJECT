@@ -1,0 +1,54 @@
+{% extends 'mainadmin.html' %}
+
+
+{% block search %}
+
+<div class="search-box">
+    <form action="viewbookings" method="post">
+      <input class="search-input" placeholder="Search Here by date like yyyy-mm-dd" type="text" name="dates" id="search">
+      <button type="submit" name="search" class="search-submit" value=""><span class="fa fa-search"></span></button>
+    </form>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+{% block mainsec %}
+
+<center>
+   
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table class="table" style="color:black;box-shadow:0px 2px 20px lightgrey;width: 1200px;">
+  <h2 align="center"><u>View Rated</u></h2>
+  <br>
+<br>
+  <tr>
+      <th>SL.NO</th>
+      <th>Username</th>
+      <th>Rate</th>
+      <th>Review</th>
+      <th>Date</th>
+      
+  </tr>
+  {%for val in view %}
+  <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{val.users.fname}} {{val.users.lname}}</td>
+      <td>{{val.rate}}</td>
+      <td>{{val.review}}</td>
+      <td>{{val.date}}</td>
+      
+     
+  </tr>
+  {%endfor%}
+</table>
+</center>
+    {%endblock%}

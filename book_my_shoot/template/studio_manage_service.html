@@ -1,0 +1,114 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+<center>
+    {%if upd_serv %}
+    <form  class="moveup" action="" method="post" style="color:aliceblue" enctype="multipart/form-data">
+        <table class="table">
+            <h2>update service</h2>
+            <tr>
+                <th>SERVICE</th>
+                <td><input type="text" class="form-control"  name="ser" value="{{upd_serv.service}}"></td>
+            </tr>
+            
+               
+                <tr>
+                    <th>Category</th>
+                    <td>
+                        <select name="cate" class="form-control">
+                            <option value="{{ upd_serv.categorys.category_id }}">{{ upd_serv.categorys.category }}</option>
+                            <option value="">Select Category</option>
+                            {%for i in categories %}
+                            <option value="{{i.category_id}}">{{i.category}}</option>
+                            {%endfor%}
+                        </select>
+                    </td>
+                </tr>
+               
+                
+            <tr>
+                <th>AMOUNT</th>
+                <td><input type="text" class="form-control" name="amount" value="{{upd_serv.amount}}"></td>
+            </tr>
+            <tr>
+                <th>DETAILS</th>
+                <td><input type="text" class="form-control" name="details" value="{{upd_serv.details}}"></td>
+            </tr>
+            <tr>
+                <td><input class="btn btn-danger" type="submit" name="sumbit" value="UPDATE"></td>
+            </tr>
+        </table>
+    </form>
+    {%else%}
+
+        <form class="moveup"  action="" method="post" style="color:aliceblue" enctype="multipart/form-data">
+        <table class="table">
+            <h2>Add Service</h2>
+            <tr>
+                <th>Service</th>
+                <td><input type="text" name="service" class="form-control" required></td>
+            </tr>
+           
+            <tr>
+                <th>Category</th>
+                <td>
+                    <select name="cate" required class="form-control">
+                        {%for i in vi_cat %}
+                        <option value="{{i.category_id}}">{{i.category}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>Amount</th>
+                <td><input type="text" name="amount1" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Details</th>
+                <td><input type="text" name="details" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td><input type="file" name="img" class="form-control" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-danger" type="submit" name="sumbit" value="ADD"></td>
+            </tr>
+        </table>
+    </form>
+    
+
+
+    
+    <table class="table">
+        <h2 align="center"><u>Manage Service</u></h2>
+        <tr>
+            <th>SL.NO</th>
+            
+            <th>Category</th>
+            <th>Service</th>
+            <th>Amount</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.categorys.category}}</td>
+            <td>{{val.service}}</td>
+            <td>{{val.amount}}</td>
+            <td>{{val.details}}</td>
+            <td>
+                <a class="btn btn-success"href="/updateservice/{{val.service_id}}">EDIT</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="/deleteservice/{{val.service_id}}">DELETE</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+  
+{%endblock%}

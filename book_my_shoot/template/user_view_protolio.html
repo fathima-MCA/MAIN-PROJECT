@@ -1,0 +1,137 @@
+
+{% include 'userheader.html' %}
+
+  
+{% if view %}
+
+<div class="title-heading-w3 text-center mx-auto mb-sm-5 mb-4" style="max-width:700px;margin-top: 100px;">
+
+
+  <h3 class="title-style">Protfolio</h3>
+  <p class="lead mt-2">Explore here.</p>
+</div>
+        
+  
+
+
+     <div class="container" style="min-height: 300px;margin-block: 10px;position: relative;left: -50px;">
+                <div class="row" style="min-height: 300px; overflow: scroll;" >
+  
+                  {% for instance in view %}
+                    <div class="col-sm-3" >
+                      <div class="thumbnail" style="width: 300px;height: 300px;">
+    
+                        {% if instance.type == 'video/mp4' or instance.type == 'video/ogg' %}
+                        <video controls style="width: 300px;height: 250px;">
+                            <source src="/static/media/{{ instance.files.url }}" type="{{ instance.type }}" >
+                        </video>
+                               {% else %}
+                               {% if  instance.files.url  %}
+      
+                               <img style="width: 300px;height: 250px;position: relative !important;" src="/static/media/{{ instance.files.url }}" alt="imagess" >
+                               {% else %}
+                               <img style="width: 300px;height: 250px;" src    alt="hello" >
+                               
+                               {% endif %}
+                              {% endif %}
+
+
+                        <!-- <div class="caption" >
+                          <h3 style="font-size: 20px;">{{ instance.title }}</h3>
+                          <h4 style="font-size: 20px;">{{ instance.category.category }}</h4>
+                        </div> -->
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              {% else %}
+
+              <div style="height: 60vh;display: grid;place-items: center;">
+          
+                  <h3 class="title-style" style="color: red;">No Protfolio</h3>
+              </div>
+              {% endif %}
+    
+
+
+
+
+<style>
+    .containernew {
+position: relative;
+margin-top: 50px;
+width: 300px;
+height: 200px;
+border-radius: 3px;
+}
+
+.overlay {
+    border-radius: 3px;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0);
+transition: background 0.5s ease;
+}
+
+.containernew:hover .overlay {
+display: block;
+background: rgba(0, 0, 0, .3);
+}
+
+img {
+position: absolute;
+width: 300px;
+height: 200px;
+left: 0;
+}
+
+.title {
+position: absolute;
+width: 300px;
+left: 0;
+top: 60px;
+font-weight: 700;
+font-size: 30px;
+text-align: center;
+text-transform: uppercase;
+color: white;
+z-index: 1;
+transition: top .5s ease;
+}
+
+.containernew:hover .title {
+top: 30px;
+}
+
+.button {
+position: absolute;
+width: 300px;
+left:0;
+top: 100px;
+right: 200px;
+text-align: center;
+opacity: 0;
+transition: opacity .35s ease;
+}
+
+.button a {
+width: 200px;
+padding: 12px 48px;
+text-align: center;
+color: white;
+border: solid 2px white;
+z-index: 1;
+}
+
+.containernew:hover .button {
+opacity: 1;
+}
+
+</style>
+
+{% include 'footer.html' %}

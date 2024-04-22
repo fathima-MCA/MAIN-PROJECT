@@ -1,0 +1,81 @@
+{% extends 'photgraphermain.html' %}
+
+{% block mainsec %}
+
+
+<body >
+
+    <center>    
+    <form class="moveup" action="" method="post" style="color:aliceblue"  enctype="multipart/form-data">
+        {%if upd_cate %}
+        <table class="table">
+            <h2><u>Update Articles</u></h2>
+            
+            <tr>
+                <th>Article</th>
+                <td><input type="text" class="form-control" name="arti" value="{{upd_cate.article}}"></td>
+              </tr>
+            <tr>
+                <tr>
+                    <th>Details</th>
+                    <td><textarea name="details">{{upd_cate.details}}</textarea></td>
+                  </tr>
+                <tr>
+                <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="sumbit" value="UPDATE"></td>
+            </tr>
+        </table>
+    </form>
+
+   
+
+    {%else%}
+ 
+        <form class="moveup action="" method="post" style="color:aliceblue" enctype="multipart/form-data">
+        <table class="table">
+            <h2>Add Article</h2>
+            <tr>
+                <th>Article</th>
+                <td><input type="text" name="arti"  class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Details</th>
+                <td><textarea name="details"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="sumbit" value="ADD"></td>
+            </tr>
+        </table>
+    </form>
+    
+ 
+    {%endif%}
+
+
+
+    
+    <table class="table">
+        <h2 align="center"><u>View Article</u></h2>
+        <tr>
+            <th>SL.NO</th>
+            <th>Article</th>
+            <th>Details</th>
+            <!-- <th>Update</th> -->
+            <th>Delete</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.article}}</td>
+            <td>{{val.details}}</td>
+            <td>
+                <a class="btn btn-success"href="/update_article/{{val.artice_id}}">EDIT</a>
+            </td>
+            <td>
+                <a class="btn btn-danger"href="/delete_article/{{val.artice_id}}">DELETE</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+
+
+    {% endblock %}

@@ -1,0 +1,47 @@
+{% include 'userheader.html' %}
+<section style="height: 50vh !important;background-image: url('static/latest/assets/images/home2.jpg');padding-top: 200px;padding-left: 100px;">
+          
+         
+</section>
+<center>
+     <h1 class="m-5">Add Complaints</h1>
+    <form action="" method="post">
+        <table class="table" style="color: #000000;width: 600px;box-shadow: 0px 2px 20px lightgray;">
+            <!-- <h3 style="color:#fff">SEND YOUR FEEDBACK</h3> -->
+            <tr>
+                <th>Complaint</th>
+                <td><input type="text" name="complaint" required></td>
+                
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="submit" value="SEND"></td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+    <br>
+    <table class="table" style="color:black;box-shadow:0px 2px 20px lightgrey;width: 1200px;">
+      <h2 align="center"><u>View Complaints</u></h2>
+      <br>
+      <tr>
+          <th>SL.NO</th>
+          
+          <th>Complaints</th>
+          <th>Reply</th>
+          <th>Date</th>
+          
+      </tr>
+      {%for val in view %}
+      <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{val.complaints}}</td>
+          <td>{{val.reply}}</td>
+          <td>{{val.date}}</td>
+          
+         
+      </tr>
+      {%endfor%}
+  </table>
+</center>
+{% include 'footer.html' %}

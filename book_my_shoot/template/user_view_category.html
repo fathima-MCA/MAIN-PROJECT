@@ -1,0 +1,52 @@
+{% load static %}
+{% include 'userheader.html' %}
+
+
+<section class="w3l-gallery py-5" id="gallery">
+    <div class="container py-md-5 py-4">
+        <div class="title-heading-w3 text-center mx-auto mb-sm-5 mb-4" style="max-width:700px">
+            <h3 class="title-style">Amazing Photo Gallery</h3>
+            <p class="lead mt-2">Works based on Categories.</p>
+        </div>
+        <div class="row">
+
+        {% for i in view3 %}
+            <div class="col-md-4 col-sm-6 mt-4" >
+                <div class=" item">
+                    <a 
+                        class="zoom d-block">
+                        <img class="card-img-bottom d-block" style="width: 400px;height: 240px;" src="/static/media/{{i.image}}" alt="Card image cap">
+                        <span class="overlay__hover"></span>
+                        <span class="hover-content">
+                            <span class="title">{{ i.category }}</span>
+                            <button style="font-size: 12px;padding: 3px 5px;border: none;" onclick="goCat('{{ i.category_id }}')">View Services </button>
+                            <!-- <button style="font-size: 12px;padding: 3px 5px;border: none;" onclick="goLog('{{ i.category_id }}')">Book Now</button>  -->
+                            <span class="content"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <script>
+
+                function goCat(id){
+                    // console.log(id)
+                    location.href=`/userviewservice/${id}`
+                }
+                function goLog(id){
+                    // console.log(id)
+                    location.href=`#home`
+                }
+
+
+
+            </script>
+
+              
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}

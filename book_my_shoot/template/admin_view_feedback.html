@@ -1,0 +1,25 @@
+{% extends 'mainadmin.html' %}
+
+{% block mainsec %}
+
+
+
+        <table class="table moveup" style="color:#fff">
+            <h3 style="color:#fff;padding-top: 100px;">Feedback</h3>
+            <tr>
+                <th>SL.NO</th>
+                <th>Name</th>
+                <th>Feedback</th>
+                <th>Date</th>
+            </tr>
+            {%for val in view%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{val.users.fname}} {{val.users.lname}}</td>
+                <td>{{val.feedback}}</td>
+                <td>{{val.date}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+    {%endblock%}

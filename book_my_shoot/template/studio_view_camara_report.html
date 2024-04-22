@@ -1,0 +1,107 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% extends 'studiomain.html' %}
+
+
+
+<!-- 
+{% block search %}
+
+<div class="search-box">
+    <form action="viewbookings" method="post">
+      <input class="search-input" placeholder="Search Here by date like yyyy-mm-dd" type="text" name="dates" id="search">
+      <button type="submit" name="search" class="search-submit" value=""><span class="fa fa-search"></span></button>
+    </form>
+  </div>
+
+{% endblock %} -->
+
+
+{% block mainsec %}
+<div class="container mt-5">
+    <div class="amazon-bill">
+        <h3 class="bill-total" style="color: #000; font-size: 24px;">Booking Report Details</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th>SL.NO</th>
+                    <th>User</th>
+                    <th>Camera</th>
+                    <th>Request Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for val in view %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{val.users.fname}} {{val.users.lname}}</td>
+                    <td>{{val.cameras.camera}}</td>
+                    <td>{{val.date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- <div class="bill-total">
+            <h4>Total Payment: ${{ total_amount }}</h4>
+        </div> -->
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .amazon-bill {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px #ccc;
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+
+    .amazon-bill h3 {
+        color: #ff9900;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table th {
+        font-weight: bold;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #dee2e6;
+    }
+
+    .bill-total {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .bill-total h4 {
+        color: #ff9900;
+    }
+</style>
+{% endblock %}

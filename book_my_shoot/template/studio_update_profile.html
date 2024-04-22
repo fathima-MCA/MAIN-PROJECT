@@ -1,0 +1,44 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+
+
+<center>
+<form action="" method="post" class="form-group moveup">
+    
+    <table style="color:aliceblue" class="table">
+        <h3 style="color: aliceblue;"><u>EDIT PROFILE</u></h3>
+        <tr>
+            <th>Name</th>
+            <td><input type="text" name="name" value="{{upd_prof.studioname}}" class="form-control"></td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td><input type="text" name="place" value="{{upd_prof.place}}" class="form-control"required  ></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td><input type="text" name="phone" value="{{upd_prof.phone}}" class="form-control"required  ></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input type="text" name="email" value="{{upd_prof.email}}" class="form-control"required  ></td>
+        </tr>
+
+        <tr>
+            <th>Since</th>
+            <td><input type="text" name="since" value="{{upd_prof.since}}" class="form-control"required ></td>
+        </tr>
+        <tr>
+            <th>Licence</th>
+            <td><input type="text" name="lice" value="{{upd_prof.licence}}" class="form-control"required ></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="submit" value="UPDATE"></td>
+        </tr>
+        
+    </table>
+</form>
+</center>
+
+{% endblock  %}

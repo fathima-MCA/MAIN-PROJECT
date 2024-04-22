@@ -1,0 +1,46 @@
+{% extends 'mainadmin.html' %}
+
+{% block mainsec %}
+
+
+    
+            <table class="table moveup" style="color:white;margin-left: 50px;">
+                <h2 style="margin-top: 100px;">USER DETAILS</h2>
+                <tr>
+                    <th>Serial No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Place</th>
+                    <th>phone</th>
+                    <th>Email</th>
+                </tr>
+                {% for i in view %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{i.fname}}</td>
+                    <td>{{i.lname}}</td>
+                    <td>{{i.place}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.email}}</td>
+                    {% if i.logins.usertype == "pending" %}
+                    <td>
+                        <a class="btn btn-warning"href="/updateusertoaccept/{{i.logins.login_id}}">Accept</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning"href="/updateusertoreject/{{i.logins.login_id}}">Reject</a>
+                    </td>
+                    {% elif i.logins.usertype == "user" %}
+                    <td>
+                        <a class="btn btn-warning"href="/updateusertoblock/{{i.logins.login_id}}">Block</a>
+                    </td>
+                    {% elif i.logins.usertype == "blocked" %}
+                    <td>
+                        <a class="btn btn-success"href="/updateusertounblock/{{i.logins.login_id}}">Unblock</a>
+                    </td>
+                    {% endif %}
+
+                </tr>
+                {%endfor%}
+            </table>
+      
+        {%endblock%}

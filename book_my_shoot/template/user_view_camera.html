@@ -1,0 +1,102 @@
+{% load static %}
+{% include 'userheader.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera View</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            border: 1px solid lightgrey;
+            border-radius: 8px;
+            box-shadow: 0px 2px 20px lightgrey;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #618462;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          
+          .button:hover {
+            background-color: #cb2a2a;
+          }
+          
+    </style>
+</head>
+<body>
+    <center>
+        <form method="post">
+        <div class="container">
+            <h2 class="my-4"><u>View Camera</u></h2>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search for camera" name="vals">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <img src="{% static 'assets/img/gg.png' %}" alt="Submit" width="38" height="38">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for val in view %}
+                <div class="col-md-6">
+                    <div class="card">
+                        <a href="/static/media/{{ val.cam_img }}">
+                            <img src="/static/media/{{ val.cam_img }}" class="card-img-top" alt="">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ val.camera }}</h5>
+                            <h6 class="card-title">{{ val.studios.studioname }}</h6>
+                            <h6 class="card-title">{{ val.studios.place }}</h6>
+                            <p class="card-text">Resolution: {{ val.resolution }}</p>
+                            <p class="card-text">Sensor type and Size: {{ val.sensortypeandsize }}</p>
+                            <p class="card-text">Lens Type: {{ val.lensetype }}</p>
+                            <p class="card-text">Connection type: {{ val.connectiontype }}</p>
+                            <p class="card-text">Amount per Day: {{ val.amountperday }}</p>
+
+                            {% if val.status == 'Not Available' %}
+
+                           <span class="button">Not Available</span>
+
+                            {% else %}
+                            <a href="/user_send_request/{{ val.camera_id }}" class="btn btn-primary">Request for Rent</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </form>
+    </center>
+
+    <br><br><br>
+    
+
+    <!-- Include Bootstrap and other JS scripts if needed -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% include 'footer.html' %}

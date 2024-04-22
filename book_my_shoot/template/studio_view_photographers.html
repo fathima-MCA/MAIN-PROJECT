@@ -1,0 +1,46 @@
+{% extends 'studiomain.html' %}
+
+
+{% block mainsec %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+    <table class="table">
+        <h2 align="center"><u>View Photographer</u></h2>
+        <tr>
+            <th>SL.NO</th>
+            
+            <th>Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Delete</th>
+            <th>Rates</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.fname}} {{val.lname}}</td>
+            <td>{{val.place}}</td>
+            <td>{{val.phone}}</td>
+            <td>{{val.email}}</td>
+            
+            <td>
+                <a class="btn btn-danger" href="/studio_accept_booking/{{val.photographer_id}}/{{bid}}/{{bdate}}">Assign</a> 
+            </td>
+            <td>
+                <a class="btn btn-warning"href="/studio_view_rated/{{i.photographer_id}}">Rated</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</center>
+{%endblock%}
+
+
+
+

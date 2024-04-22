@@ -1,0 +1,74 @@
+{% extends 'mainadmin.html' %}
+
+{% block mainsec %}
+
+
+<body >
+
+    <center>    
+    <form class="moveup" action="" method="post" style="color:aliceblue"  enctype="multipart/form-data">
+        {%if upd_cate %}
+        <table class="table">
+            <h2><u>Update Category</u></h2>
+            
+            <tr>
+                <th>Category</th>
+                <td><input type="text" class="form-control" name="cate" value="{{upd_cate.category}}"></td>
+              </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="sumbit" value="UPDATE"></td>
+            </tr>
+        </table>
+    </form>
+
+   
+
+    {%else%}
+ 
+        <form class="moveup action="" method="post" style="color:aliceblue" enctype="multipart/form-data">
+        <table class="table">
+            <h2>Add Category</h2>
+            <tr>
+                <th>CATEGORY</th>
+                <td><input type="text" name="cate"  class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td><input type="file" accept="image/*,video/*" name="img" class="form-control" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-primary" type="submit" name="sumbit" value="ADD"></td>
+            </tr>
+        </table>
+    </form>
+    
+ 
+    {%endif%}
+
+
+
+    
+    <table class="table">
+        <h2 align="center"><u>View Category</u></h2>
+        <tr>
+            <th>SL.NO</th>
+            <th>Category</th>
+            <!-- <th>Update</th> -->
+            <th>Delete</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.category}}</td>
+            <!-- <td>
+                <a class="btn btn-success"href="/updatecategory/{{val.category_id}}">EDIT</a>
+            </td> -->
+            <td>
+                <a class="btn btn-danger"href="/deletecategory/{{val.category_id}}">DELETE</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+
+
+    {% endblock %}

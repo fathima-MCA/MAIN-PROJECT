@@ -1,0 +1,60 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+{%if acc_pay %}
+<form action="" method="post">
+    <table>
+       
+        
+        
+        
+        <tr>
+            <th>Amount</th>
+            <td><input type="text" name="amount" value="{{acc_pay.amount}}" required class="form-control"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="make full payment" required class="form-control"></td>
+        </tr>
+    </table>
+</form>
+</body>
+{%endif%} -->
+
+
+<form method="POST" action="{% url 'pay' %}">
+    <center>
+       <h2 style="color: black;margin-top: 1em;">Make Payment<span class="text_color"></span> </h2>
+        <table class="table" style="width:500px;">
+                    <tr>
+                        <th style="color: black">CardNo</th>
+                        <td style="color: black"><input type="text" name="cd" required class="form-control"   pattern="[0-9 ]{12}" title="Enter 12 digit " autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <th style="color: black">CVV</th>
+                        <td style="color: black"><input type="text" name="cv"  autocomplete="off" required class="form-control" pattern="[0-9 ]{3}" title="Enter 3 digit cvv"></td>
+                    </tr>
+                    <tr>
+                        <th style="color: black">ExpiryDate</th>
+                        <td style="color: black"><input type="date" name="ed"  autocomplete="off" required class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th style="color: black">Cardholder</th>
+                        <td style="color: black"><input type="text" name="cr" required class="form-control" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <th style="color: black">Amount</th>
+                        <td style="color: black"><input type="text" name="amount"  autocomplete="off" required  class="form-control" value="{{ df }}" ></td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2"><input type="submit" name="payment" value="PAYMENT" class="btn btn-success"></td>
+                    </tr>
+            </table>  
+        </center>
+    </body>

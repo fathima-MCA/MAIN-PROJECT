@@ -1,0 +1,117 @@
+<br>
+{% extends 'mainadmin.html' %}
+
+
+{% block mainsec %}
+<div class="container mt-5">
+
+<!-- 
+
+    {% block search %}
+    <div class="search-box">
+        <form action="viewbookings" method="post">
+            <input class="search-input" placeholder="Search Here by date like yyyy-mm-dd" type="text" name="dates" id="search">
+            <button type="submit" name="search" class="search-submit" value=""><span class="fa fa-search"></span></button>
+        </form>
+    </div>
+    {% endblock %} -->
+
+    <h1>Search Report by Date Range</h1>
+    <form method="POST">
+        From: <input type="date" name="from_date">
+        To: <input type="date" name="to_date">
+        <input type="submit" value="Search">
+    </form>
+
+
+
+    <div class="amazon-bill">
+        <h3 class="bill-total" style="color: #000; font-size: 24px;"> Report Details</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th>Sl.No</th>
+                    <th>Studio</th>
+                    <th>Photographer</th>
+                    <th>User</th>
+                    <th>Category</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in view %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.services.studios.studioname }}</td>
+                    <td>{{ i.photographers.fname }} {{ i.photographers.lname }}</td>
+                    <td>{{ i.users.fname }} {{ i.users.lname }}</td>
+                    <td>{{ i.services.categorys.category }}</td>
+                    <td>{{ i.services.service }}</td>
+                    <td>{{ i.date }}</td>
+                    <td>{{ i.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- <div class="bill-total">
+            <h4>Total Payment: ${{ total_amount }}</h4>
+        </div> -->
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .amazon-bill {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px #ccc;
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+
+    .amazon-bill h3 {
+        color: #ff9900;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table th {
+        font-weight: bold;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #dee2e6;
+    }
+
+    .bill-total {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .bill-total h4 {
+        color: #ff9900;
+    }
+</style>
+{% endblock %}

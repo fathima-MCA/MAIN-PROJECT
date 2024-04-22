@@ -1,0 +1,139 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='fname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='lname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        // $("input[name='dob']").on('input', function(e) {
+        //     $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+
+        // });
+        
+        $("input[name='phone']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='pin']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror').show();
+                } else {
+                    $('#eerror').hide();
+                }
+
+        });
+        $("input[name='address']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            
+        $("input[name='pwd']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+
+
+</script>
+
+
+<center>
+        <form class="moveup"  action="" method="post" style="color:aliceblue" enctype="multipart/form-data">
+        <table class="table">
+            <h2>Add Photographers</h2>
+            <tr>
+                <th>Firstname</th>
+                <td><input type="text" name="fname" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td><input type="text" name="lname" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" name="pincode" maxlength="6" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="number" name="phone" class="form-control" maxlength="10" required></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" name="email" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required ></td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td><input type="text" name="username" class="form-control" required></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="text" name="password" class="form-control" required></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-danger" type="submit" name="sumbit" value="ADD"></td>
+            </tr>
+        </table>
+    </form>
+    
+
+
+    
+    <table class="table">
+        <h2 align="center"><u>Manage Photographer</u></h2>
+        <tr>
+            <th>SL.NO</th>
+            
+            <th>Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Delete</th>
+            <th>Rates</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.fname}} {{val.lname}}</td>
+            <td>{{val.place}}</td>
+            <td>{{val.phone}}</td>
+            <td>{{val.email}}</td>
+            
+            <td>
+                <a class="btn btn-danger" href="/studiodeletephotographer/{{val.logins_id}}">DELETE</a>
+            </td>
+            <td>
+                <a class="btn btn-warning"href="/studio_view_rated/{{val.photographer_id}}">Rated</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+  
+{%endblock%}
+
+
+
+

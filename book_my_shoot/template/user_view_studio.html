@@ -1,0 +1,40 @@
+{% load static %}
+{% include 'userheader.html' %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+    <form method="post">
+    <div class="container">
+        <h2 align="center"><u>View Studio</u></h2>
+        <br>
+        <br>
+        
+        <div class="row">
+            {% for val in view %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ val.studioname }}</h5>
+                        <p class="card-text">Place: {{ val.place }}</p>
+                        <p class="card-text">Phone: {{ val.phone }}</p>
+                        <p class="card-text">Email: {{ val.email }}</p>
+                        <p class="card-text">Since: {{ val.since }}</p>
+                        <p class="card-text">License: {{ val.licence }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </form>
+</center>
+
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}

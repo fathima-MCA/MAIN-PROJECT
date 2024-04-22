@@ -1,0 +1,81 @@
+{% extends 'photgraphermain.html' %}
+
+
+{% block search %}
+
+<div class="search-box">
+    <form action="viewbookings" method="post">
+      <input class="search-input" placeholder="Search Here by date like yyyy-mm-dd" type="text" name="dates" id="search">
+      <button type="submit" name="search" class="search-submit" value=""><span class="fa fa-search"></span></button>
+    </form>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+{% block mainsec %}
+
+
+   
+        <table class="table moveup" style="color:aliceblue;margin-left: 100px;">
+            <h3 style="color:aliceblue;padding-top: 100px;margin-left: 100px;">Booking Details</h3>
+            <tr>
+                <th>Sl.No</th>
+                <th>Category</th>
+                <th>Service</th>
+                <th>User</th>
+                <th>Venue</th>
+                <th>Place</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Booked For Date</th>
+            </tr>
+            {%for i in view %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.bookings.services.categorys.category}}</td>
+                <td>{{i.bookings.services.service}}</td>
+                <td>{{i.bookings.users.fname}} {{i.bookings.users.lname}}</td>
+                <td>{{i.bookings.venue}}</td>
+                <td>{{i.bookings.place}}</td>
+                <td>{{i.bookings.time}}</td>
+                <td>{{i.bookings.date}}</td>
+                <td>{{i.bookings.bookingfordate}}</td>
+                <td>
+                    {% if i.bookings.status == 'advance paid'%}
+                    <a class="btn btn-primary"href="studio_update_booking_status/{{i.bookings.booking_id}}">Work Complete</a>
+                    {% endif %}
+                    <a class="btn btn-danger" href="/producer_make_chat/{{i.bookings.users.logins_id}}">Chat</a>
+                </td>
+                <!-- {% if i.status == 'pending'%}
+                <td>
+                    <a class="btn btn-primary"href="/studio_view_photographers/{{i.booking_id}}">ACCEPT</a>
+                    <a class="btn btn-danger"href="/studio_reject_booking/{{i.booking_id}}">REJECT</a>
+                </td>
+                {% elif i.status == 'advance paid'%}
+                
+        
+                <td>
+                    <a class="btn btn-success"href="/studio_view_advance_payment/{{i.booking_id}}">view advance payment</a>
+                    
+                        <a class="btn btn-primary"href="studio_update_booking_status/{{i.booking_id}}">Work Complete</a>
+                    
+                </td>
+                {% elif i.status == 'payment completed'%}
+                <td>
+                    <a class="btn btn-success"href="/studio_upload_video/{{i.booking_id}}">UPLOAD VIDEO</a>
+                </td>
+                    <!-- <a class="btn btn-success"href="/updatestatustocompleted/{{i.booking_id}}">Completed</a> -->
+                <!-- </td> -->
+                {% else %} -->
+                    <td>{{i.status}}</td>
+                <!-- {%endif%}  -->
+
+            </tr>
+            {%endfor%}
+        </table>
+
+    {%endblock%}

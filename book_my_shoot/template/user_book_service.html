@@ -1,0 +1,48 @@
+{% include 'userheader.html' %}
+
+<section style="height: 0vh !important;background-image: url('static/latest/assets/images/home2.jpg');padding-top: 200px;padding-left: 100px;">
+          
+         
+</section>
+<center>
+<form action="" method="post" style="width: 600px;box-shadow: 0px 2px 20px lightgray;">
+    <table class="table">
+        <h3>BOOK SERVICE</h3>
+        
+        <tr>
+            <th>Photographer</th>
+            <td><select name="sph">
+                <option value="None">None</option>
+                {% for row in us_ph %}
+                    <option value="{{row.photographer_id }}">{{row.fname}} {{row.lname}}</option>
+                {% endfor %}
+            </select></td>
+        </tr>
+
+        <tr>
+            <th>Venue</th>
+            <td><input type="text" name="venue" class="form-control" required></td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td><input type="text" name="place" class="form-control" required></td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td><input type="date" min="{{today}}" name="date" class="form-control" required></td>
+        </tr>
+        <tr>
+            <th>Time</th>
+            <td><input type="time"  name="time" class="form-control" required></td>
+        </tr>
+       
+        
+        <tr>
+            <td><input class="btn btn-primary" type="submit" name="submit" value="BOOK"></td>
+        </tr>
+    </table>
+</form>
+</center>
+{% include 'footer.html' %}
+  
+  

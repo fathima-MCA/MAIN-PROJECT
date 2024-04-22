@@ -1,0 +1,68 @@
+{% load static %}
+{% include 'userheader.html' %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+    <form method="post">
+    <table class="table" style="color:black;box-shadow:0px 2px 20px lightgrey;width: 1200px;">
+        <h2 align="center"><u>View Photographer</u></h2>
+        <br>
+        <br>
+        <tr>
+            <td colspan="5" align="right">
+                <select name="check" id="" class="form-control" style="width:400px;">
+                <option value="Name">Name</option>
+                <option value="Place">Place</option>
+                <option value="Pincode">Pincode</option>
+            </select>
+            <input style="width:400px;" type="text" name="vals">
+            <br>
+            <input type="image" src="static/assets/img/gg.png" alt="Submit" width="38" height="38">
+        </tr>
+        <tr>
+            <td colspan="5" ><br></td>
+        </tr>
+        <tr>
+            <th>SL.NO</th>
+            <th>Studio Name</th>
+            <th>Studio Place</th>
+            <th>Studio Number</th>
+            <th>Photographer Name</th>
+            <th>Photographer Phone</th>
+            <th>Pincode</th>
+            <th>Email</th>
+            <th>Protfolio</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.studios.studioname}}</td>
+            <td>{{val.studios.place}}</td>
+            <td>{{val.studios.phone}}</td>
+            <td>{{val.fname}} {{val.lname}}</td>
+            <td>{{val.phone}}</td>
+            <td>{{val.pincode}}</td>
+            <td>{{val.email}}</td>
+            
+            <td>
+                <!-- <a class="btn btn-danger" href="/user_view_protolio/{{val.photographer_id}}">Protfolio</a> -->
+                <a class="btn btn-danger" href="/user_view_potcategory/{{val.photographer_id}}">Protfolio</a>
+                <!-- <a class="btn btn-danger" href="/user_make_chat/{{val.logins_id}}">Chat</a> -->
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</form>
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}
+  
+
+
+

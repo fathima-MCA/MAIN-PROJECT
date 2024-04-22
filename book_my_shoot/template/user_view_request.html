@@ -1,0 +1,48 @@
+{% load static %}
+{% include 'userheader.html' %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+    <table class="table" style="color:black;box-shadow:0px 2px 20px lightgrey;width: 1200px;">
+        <h2 align="center"><u>View Request</u></h2>
+        <br>
+        <br>
+        <tr>
+            <th>SL.NO</th>
+            <th>Camera</th>
+            <th>Sensor</th>
+            <th>Lense</th>
+            <th>Type</th>
+            <th>Request Date</th>
+            <th>Status</th>
+        </tr>
+        {%for val in view %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{val.cameras.camera}}</td>
+            <td>{{val.cameras.sensortypeandsize}}</td>
+            <td>{{val.cameras.lensetype}}</td>
+            <td>{{val.cameras.connectiontype}}</td>
+            <td>{{val.date}}</td>
+            <td>{{val.status}}</td>
+            {% if val.status == "Accept" %}
+            <td>
+                <a class="btn btn-primary" href="/userreturncamera/{{val.request_id}}">Return</a>
+            </td>
+            {% endif %}
+        </tr>
+        {%endfor%}
+    </table>
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}
+  
+
+
+

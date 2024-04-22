@@ -1,0 +1,42 @@
+{% extends 'studiomain.html' %}
+
+{% block mainsec %}
+  
+    
+    <table class="table moveup" style="color:aliceblue;margin-left: 100px;">
+        <h3 style="color:aliceblue;padding-top: 100px;margin-left: 100px;">Request Details</h3>
+            
+            <tr>
+                <th>SL.NO</th>
+                <th>User</th>
+                <th>Camera</th>
+                <th>Request Date</th>
+                <th>Status</th>
+            </tr>
+            {%for val in view %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{val.users.fname}} {{val.users.lname}}</td>
+                
+                <td>{{val.cameras.camera}}</td>
+                
+                <td>{{val.date}}</td>
+                {% if val.status == 'pending'%}
+                <td>
+                    <a class="btn btn-primary"href="/studio_accept_request/{{val.request_id}}">ACCEPT</a>
+                    <a class="btn btn-danger"href="/studio_reject_request/{{val.request_id}}">REJECT</a>
+                </td>
+                {% else %}
+                    <td>{{val.status}}</td>
+                {% endif %}
+                <!-- <td>
+                    <a class="btn btn-primary" href="/user_send_request/{{val.camera_id}}">Request for Rent</a>
+                </td> -->
+            </tr>
+            {%endfor%}
+        </table>
+   
+</center>
+
+ 
+{%endblock%}
